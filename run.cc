@@ -87,14 +87,21 @@ for(int i = 0; i < exp_label.size(); ++i){
 }
 
 cout << "error = " << 4*pow(error_sum,0.5) << endl;
-  return 0;
 
 for(int n = 2; n < 4; ++n){
-  int j = 0;
-  for(int i = 0; i < exp_label.size(); ++i){
-    std::cout << "exp " << exp_label[i] << "vs exp " << exp_label[i+1] << " differ in " << exps[i].checkCompatibility(exps[i+1], n) << "measurements by " << n << " sigma" << std::endl;
+  for(int i = 0; i < exps.size(); ++i){
+    for(int j = i + 1; j < exps.size(); ++j){
+      std::cout << "exp " << i << " vs epx " << j << " differ in " << exps[i].checkCompatibility(exps[j],n) << " measurments by " << n << " sigma" << std::endl;
+    }
   }
 }
+  
+//for(int n = 2; n < 4; ++n){
+//  int j = 0;
+//  for(int i = 0; i < exp_label.size(); ++i){
+//    std::cout << "exp " << exp_label[i] << " vs exp " << exp_label[i+1] << " differ in " << exps[i].checkCompatibility(exps[i+1], n) << " measurements by " << n << " sigma" << std::endl;
+//  }
+//}
 
 Data sum12  = exps[0] + exps[1];
 for(int i = 0; i < sum12.size(); ++i){
@@ -102,7 +109,7 @@ for(int i = 0; i < sum12.size(); ++i){
   std::cout << exps[0].error(i) << ", " << exps[1].error(i) << ", " << sum12.error(i) << std::endl;
 } 
 
-for(auto &e : exps){
+for(auto e : exps){
   std::cout << "chi2: " << e.chi2() << " chi2/ndf: " << e.chi2()/52 << std::endl;
 }
 
