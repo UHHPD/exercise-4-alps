@@ -55,7 +55,7 @@ int Data::checkCompatibility(const Data &in, int n){
   int outliers = 0;
   for(int i = 0; i < m_data.size(); ++i){
     double comb_err = sqrt(m_errors[i]*m_errors[i] + in.m_errors[i]*in.m_errors[i]);
-    if((m_data[i] - in.m_data[i])/comb_err > n){
+    if(std::abs(m_data[i] - in.m_data[i])/comb_err > n){
       std::cout << "Data incompatible at bin " << i << std::endl;
       outliers++;
     }
