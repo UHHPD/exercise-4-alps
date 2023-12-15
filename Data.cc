@@ -60,6 +60,7 @@ int Data::checkCompatibility(const Data &in, int n){
       outliers++;
     }
   }
+  return outliers;
 }
 
 
